@@ -8,6 +8,6 @@ app.get("/",(req,res)=>{
     res.status(200).send({ name:"Abrorbek", surname:"Ubaydullayev" })
 })
 
-app.listen(8080,"localhost",function (){
+app.listen(8080,"app-freecodefirst.herokuapp.com",function (){
     console.log("Server started")
 })
