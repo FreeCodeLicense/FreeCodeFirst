@@ -1,14 +1,25 @@
-require("dotenv").config()
 const express=require("express")
+const bodyParser=require("body-parser")
+const { static } = require("express");
 const app=express()
 
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+// routes
+const indexRoutes=require("./routes/index")
+app.use(indexRoutes)
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended:false }))
+
+app.use(static("public"))
+
+app.use((req,res,next)=>{
+    console.log(`${req.method} ${req.path} - ${req.ip}`)
+    next()
+})
 app.get("/",(req,res)=>{
-    res.status(200).send({ name:"Abrorbek", surname:"Ubaydullayev" })
+    res.sendfile(__dirname+"/public/index.html")
 })
 
-app.listen(process.env.PORT || 3000,function (){
-    console.log("Server started")
-})
+module.exports={
+    app,
+}
