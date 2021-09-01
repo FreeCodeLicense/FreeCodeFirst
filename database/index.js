@@ -13,10 +13,27 @@ const personSchema= new Schema({
     age: Number,
     favoriteFoods: [String]
 })
+const Person=mongoose.model("Person",personSchema)
 
-const Person=mongoose.model("User",personSchema)
+const userSchema=new Schema({
+    username:String,
+})
 
+const User=mongoose.model("User",userSchema)
+
+const exerciseSchema=new Schema({
+    username: String,
+    description: String,
+    duration: Number,
+    date: String,
+    _id:String
+
+})
+
+const Exercise=mongoose.model("Exercise",exerciseSchema)
 
 module.exports={
-    Person
+    Person,
+    User,
+    Exercise
 }
